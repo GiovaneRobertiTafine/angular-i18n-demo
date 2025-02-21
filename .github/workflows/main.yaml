@@ -30,4 +30,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run ng -- deploy --repo="https://github.com/GIovaneRobertiTafine/angular-i18n-demo.git" --base-href=/GiovaneRobertiTafine/ --name=GiovaneRobertiTafine --email=kstv23@hotmail.com
+          npm run ng -- deploy --repo="https://github.com/GiovaneRobertiTafine/angular-i18n-demo.git" --base-href=/angular-i18n-demo/ --name=GiovaneRobertiTafine --email=kstv23@hotmail.com
