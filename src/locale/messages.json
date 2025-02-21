@@ -1,0 +1,9 @@
+{
+  "locale": "en-US",
+  "translations": {
+    "appTitle": "Welcome to our Angular i18n Demo!",
+    "appDescription": "This application supports multiple languages.",
+    "5355811507477828639": "Show",
+    "5355346251098498999": "Hide"
+  }
+}
