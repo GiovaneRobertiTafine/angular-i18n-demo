@@ -1,20 +1,33 @@
-name: Build and Deploy
+name: Build & Deploy to GitHub Pages
+
 on:
   push:
-    branches:
-      - master
-jobs:
-  build:
+    branches: ["main"]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Build job
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: All things angular
-      uses: AhsanAyaz/angular-deploy-gh-pages-actions ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
-      with:
-        angular_project_dir:
-        github_access_token: ${{ secrets.GH_TOKEN }} # see the Configuration section for how you can create secrets
-        build_configuration:  # The build environment for the app. please look configurations in your angular.json
-permissions:
-  contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Github pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npm run ng -- deploy --repo="https://github.com/GIovaneRobertiTafine/angular-i18n-demo.git" --base-href=/GiovaneRobertiTafine/ --name=GiovaneRobertiTafine --email=kstv23@hotmail.com
